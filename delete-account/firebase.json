@@ -17,7 +17,6 @@
     }
   ],
   "extensions": {
-    "delete-account": ".",
-    "delete-account-he0d": "."
+    "delete-account": "."
   }
 }

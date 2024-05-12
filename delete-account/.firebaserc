@@ -1,5 +1,16 @@
 {
   "projects": {
     "default": "withcenter-test-2"
-  }
+  },
+  "targets": {},
+  "etags": {
+    "withcenter-test-2": {
+      "extensionInstances": {
+        "delete-account-pupq": "8ffedb7ef635484cbd192880b9575598ba85b2d83b70303f927a3a21d5666a78",
+        "delete-account-he0d": "562cdd09796535073fb93f0277163903045cb436bce84258479011c39fd4346d",
+        "storage-extract-image-text": "f1d42c18ea011fde5075cf8bb633eecc0972e35754b9b46f50b49fa95db1bf31"
+      }
+    }
+  },
+  "dataconnectEmulatorConfig": {}
 }
