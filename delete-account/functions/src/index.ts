@@ -8,9 +8,11 @@
  * https://firebase.google.com/docs/extensions/publishers
  */
 
+import * as admin from "firebase-admin";
 import { getAuth } from "firebase-admin/auth";
 import * as functions from "firebase-functions";
 
+admin.initializeApp();
 
 // exports.greetTheWorld = functions.https.onRequest(
 //   (req: functions.Request, res: functions.Response) => {
