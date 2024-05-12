@@ -46,7 +46,7 @@ if (admin.apps.length === 0) {
  */
 export const deleteAccount = functions.https.onCall(async (data, context) => {
 
-  console.log('version: 14');
+  console.log('version: 15');
 
   // Checking that the user is authenticated.
   if (!context.auth) {
@@ -71,7 +71,7 @@ export const deleteAccount = functions.https.onCall(async (data, context) => {
     console.log("deleteUser() failed. e:any -> ", e);
     if (e instanceof Error || (e as any).errorInfo?.code) {
       console.log("if (e instanceof Error || (e as any).errorInfo?.code) {");
-      throw new functions.https.HttpsError("internal", (e as any).errorInfo.code + ": " + (e as any).errorInfo.message, { code: (e as any).errorInfo.code });
+      throw new functions.https.HttpsError("internal", e, (e as any).errorInfo);
     } else {
       console.log('else { e.code, e.message. e', e.code, e.message, e);
       throw new functions.https.HttpsError("internal", 'deleteAccount() failed.', { code: (e as any).code, message: (e as any).message });
