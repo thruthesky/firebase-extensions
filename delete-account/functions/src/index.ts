@@ -9,7 +9,6 @@
  */
 
 import { getAuth } from "firebase-admin/auth";
-import { onCall } from "firebase-functions/v1/https";
 import * as functions from "firebase-functions";
 
 
@@ -38,7 +37,7 @@ import * as functions from "firebase-functions";
  * This will delete user account from Firebase Auth, Realtime Database, Firestore.
  *
  */
-export const deleteAccount = onCall(async (data, context) => {
+export const deleteAccount = functions.https.onCall(async (data, context) => {
 
   console.log('deleteAccont; requst.data(); request.auth; ', data, context.auth, context.auth);
 
