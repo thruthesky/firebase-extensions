@@ -15,5 +15,9 @@
         "npm --prefix \"$RESOURCE_DIR\" run build"
       ]
     }
-  ]
+  ],
+  "extensions": {
+    "delete-account": ".",
+    "delete-account-he0d": "."
+  }
 }

@@ -16,10 +16,19 @@ if (admin.apps.length === 0) {
 * This test is not reliable because the tokens may be invalid after a while.
 */
 describe("Delete account)", () => {
+    it("Not login error", async () => {
+        const wrapped = test().wrap(deleteAccount);
+        try {
+            await wrapped({});
+        } catch (e) {
+            assert.equal((e as any).details.code, "unauthorized", "User not logged in");
+        }
+    });
+
     it("Test with invalid uid", async () => {
         const wrapped = test().wrap(deleteAccount);
         try {
-            await wrapped({
+            await wrapped({}, {
                 auth: {
                     uid: 'this-is-invalid-uid',
                 },
@@ -38,7 +47,7 @@ describe("Delete account)", () => {
 
         const wrapped = test().wrap(deleteAccount);
 
-        const re = await wrapped({
+        const re = await wrapped({}, {
             auth: {
                 uid: user.uid,
             },

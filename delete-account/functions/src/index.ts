@@ -9,7 +9,6 @@
  */
 
 import { getAuth } from "firebase-admin/auth";
-import { CallableRequest } from "firebase-functions/lib/common/providers/https";
 import { onCall } from "firebase-functions/v1/https";
 import * as functions from "firebase-functions";
 
@@ -39,19 +38,19 @@ import * as functions from "firebase-functions";
  * This will delete user account from Firebase Auth, Realtime Database, Firestore.
  *
  */
-export const deleteAccount = onCall(async (request: CallableRequest) => {
+export const deleteAccount = onCall(async (data, context) => {
 
-  console.log('deleteAccont; requst.data(); request.auth; ', request.data, request.auth);
+  console.log('deleteAccont; requst.data(); request.auth; ', data, context.auth, context.auth);
 
 
   // Checking that the user is authenticated.
-  if (!request.auth) {
+  if (!context.auth) {
     // Throwing an HttpsError so that the client gets the error details.
     throw new functions.https.HttpsError("failed-precondition", "The function must be " +
-      "called while authenticated.");
+      "called while authenticated.", { code: "unauthorized" });
   }
 
-  const uid = request.auth?.uid;
+  const uid = context.auth?.uid;
 
   if (!uid) {
     // Throwing an HttpsError so that the client gets the error details.
