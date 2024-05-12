@@ -12,7 +12,12 @@ import * as admin from "firebase-admin";
 import { getAuth } from "firebase-admin/auth";
 import * as functions from "firebase-functions";
 
-admin.initializeApp();
+
+if (admin.apps.length === 0) {
+  admin.initializeApp();
+}
+
+
 
 // exports.greetTheWorld = functions.https.onRequest(
 //   (req: functions.Request, res: functions.Response) => {
@@ -41,7 +46,7 @@ admin.initializeApp();
  */
 export const deleteAccount = functions.https.onCall(async (data, context) => {
 
-  console.log('deleteAccont; requst.data(); request.auth; ', data, context.auth, context.auth);
+
 
 
   // Checking that the user is authenticated.
@@ -64,11 +69,11 @@ export const deleteAccount = functions.https.onCall(async (data, context) => {
     await auth.deleteUser(uid);
     return { code: 0, uid: uid };
   } catch (e: any) {
-    console.log("e -> ", e);
+    console.log("deleteUser() failed. e:any -> ", e);
     if (e instanceof Error || (e as any).errorInfo?.code) {
       throw new functions.https.HttpsError("internal", (e as any).errorInfo.code + ": " + (e as any).errorInfo.message, { code: (e as any).errorInfo.code });
     } else {
-      console.log('error with unknown code -> ', e);
+      // console.log('error with unknown code -> ', e);
       throw new functions.https.HttpsError("internal", `${e}`, { code: (e as any).code });
     }
   }

@@ -3,7 +3,7 @@
 
 # Identifier for your extension
 name: delete-account  
-version: 0.0.10  # Follow semver versioning
+version: 0.0.11  # Follow semver versioning
 specVersion: v1beta  # Version of the Firebase Extensions specification
 
 # Friendly display name for your extension (~3-5 words)
