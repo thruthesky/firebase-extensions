@@ -21,7 +21,7 @@ describe("Delete account)", () => {
         try {
             await wrapped({});
         } catch (e) {
-            assert.equal((e as any).details.code, "unauthorized", "User not logged in");
+            assert.equal((e as any).details.code, "unauthenticated", "User not logged in");
         }
     });
 
