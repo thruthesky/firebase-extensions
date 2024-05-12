@@ -63,15 +63,13 @@ export const deleteAccount = functions.https.onCall(async (data, context) => {
   try {
     await auth.deleteUser(uid);
     return { code: 0, uid: uid };
-  } catch (e) {
-    console.log(e);
-    if (e instanceof Error) {
-      if ((e as any).errorInfo.code) {
-        throw new functions.https.HttpsError("internal", (e as any).errorInfo.code + ": " + (e as any).errorInfo.message, { code: (e as any).errorInfo.code });
-      }
-      throw new functions.https.HttpsError("internal", e.name + ": " + e.message), { code: (e as any).name };
+  } catch (e: any) {
+    console.log("e -> ", e);
+    if (e instanceof Error || (e as any).errorInfo?.code) {
+      throw new functions.https.HttpsError("internal", (e as any).errorInfo.code + ": " + (e as any).errorInfo.message, { code: (e as any).errorInfo.code });
     } else {
-      throw new functions.https.HttpsError("internal", `${e}`, { code: "unknown" });
+      console.log('error with unknown code -> ', e);
+      throw new functions.https.HttpsError("internal", `${e}`, { code: (e as any).code });
     }
   }
 });

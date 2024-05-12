@@ -1,3 +1,6 @@
+## Version 0.0.10
+- Fix. error
+
 ## Version 0.0.9
 - Fix. entrypoint
 
