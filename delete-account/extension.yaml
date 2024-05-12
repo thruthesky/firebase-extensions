@@ -3,7 +3,7 @@
 
 # Identifier for your extension
 name: delete-account  
-version: 0.0.5  # Follow semver versioning
+version: 0.0.6  # Follow semver versioning
 specVersion: v1beta  # Version of the Firebase Extensions specification
 
 # Friendly display name for your extension (~3-5 words)
@@ -43,7 +43,7 @@ resources:
       # httpsTrigger is used for an HTTP triggered function.
       httpsTrigger: {}
       runtime: "nodejs18"
-      entryPoint: deleteAccountEntryPoint5
+      entryPoint: deleteAccount
 
 
 roles:
