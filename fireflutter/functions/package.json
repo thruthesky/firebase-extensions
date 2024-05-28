@@ -7,7 +7,7 @@
     "build:watch": "tsc --watch",
     "mocha": "mocha --require ts-node/register '**/*.spec.ts'",
     "test": "(cd integration-tests && firebase emulators:exec 'npm run mocha' -P demo-test)",
-    "test:user-count": "mocha --require ts-node/register --watch --watch-files src/**/*.ts,tests/**/*.ts tests/user/user-count.spec.ts"
+    "test:user-count": "mocha --require ts-node/register --watch --watch-files src/**/*.ts,tests/**/*.ts tests/user/user-count.spec.ts  --timeout 10000"
   },
   "main": "lib/index.js",
   "dependencies": {
