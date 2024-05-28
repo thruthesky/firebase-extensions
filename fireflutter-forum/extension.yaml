@@ -2,21 +2,23 @@
 # https://firebase.google.com/docs/extensions/reference/extension-yaml
 
 # Identifier for your extension
-name: delete-account  
-version: 0.0.16  # Follow semver versioning
+# TODO: Replace this with an descriptive name for your extension.
+name: greet-the-world  
+version: 0.0.1  # Follow semver versioning
 specVersion: v1beta  # Version of the Firebase Extensions specification
 
 # Friendly display name for your extension (~3-5 words)
-displayName: Delete firebase account
+displayName: Greet the world
 
 # Brief description of the task your extension performs (~1 sentence)
 description: >-
-  Delete the login user's firebase auth account
+  Sends the world a greeting.
 
-license: Apache-2.0 # https://spdx.org/licenses/
+license: Apache-2.0  # https://spdx.org/licenses/
 
 # Public URL for the source code of your extension.
-sourceUrl: https://github.com/thruthesky/firebase-extensions/tree/main/delete-account
+# TODO:  Replace this with your GitHub repo.
+sourceUrl: https://github.com/ORG_OR_USER/REPO_NAME
 
 # Specify whether a paid-tier billing plan is required to use your extension.
 # Learn more in the docs: https://firebase.google.com/docs/extensions/reference/extension-yaml#billing-required-field
@@ -35,17 +37,25 @@ billingRequired: true
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#resources-field
 resources:
-  - name: deleteAccount
+  - name: greetTheWorld
     type: firebaseextensions.v1beta.function
     description: >-
-      Callable function to be called from your app that will delete the login user's firebaes auth accont
+      HTTP request-triggered function that responds with a specified greeting message
     properties:
       # httpsTrigger is used for an HTTP triggered function.
       httpsTrigger: {}
-      runtime: "nodejs18"
-      entryPoint: deleteAccount
+      runtime: "nodejs16"
 
-
-roles:
-  - role: firebaseauth.admin
-    reason: Allows the extension to delete the user account in Firebase Auth.
+# In the `params` field, set up your extension's user-configured parameters.
+# Learn more in the docs:
+# https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
+params:
+  - param: GREETING
+    label: Greeting for the world
+    description: >-
+      What do you want to say to the world?
+      For example, Hello world? or What's up, world?
+    type: string
+    default: Hello
+    required: true
+    immutable: false

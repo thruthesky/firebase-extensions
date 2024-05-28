@@ -70,8 +70,8 @@ export const deleteAccount = functions.https.onCall(async (data, context) => {
   } catch (e: any) {
     console.log("deleteUser() failed. e:any -> ", e);
     if (e instanceof Error || (e as any).errorInfo?.code) {
-      console.log("if (e instanceof Error || (e as any).errorInfo?.code) {");
-      throw new functions.https.HttpsError("internal", e, (e as any).errorInfo);
+      console.log("if (e instanceof Error || (e as any).errorInfo?.code) {",);
+      throw new functions.https.HttpsError("internal", "---> error lines: if (e instanceof Error || (e as any).errorInfo?.code) ", { 'details': 'this is details' });
     } else {
       console.log('else { e.code, e.message. e', e.code, e.message, e);
       throw new functions.https.HttpsError("internal", 'deleteAccount() failed.', { code: (e as any).code, message: (e as any).message });
