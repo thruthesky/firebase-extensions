@@ -5,8 +5,9 @@
     "lint:fix": "eslint \"src/**/*\" --fix",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "mocha": "mocha '**/*.spec.ts'",
-    "test": "(cd integration-tests && firebase emulators:exec 'npm run mocha' -P demo-test)"
+    "mocha": "mocha --require ts-node/register '**/*.spec.ts'",
+    "test": "(cd integration-tests && firebase emulators:exec 'npm run mocha' -P demo-test)",
+    "test:user-count": "mocha --require ts-node/register --watch --watch-files src/**/*.ts,tests/**/*.ts tests/user/user-count.spec.ts"
   },
   "main": "lib/index.js",
   "dependencies": {
